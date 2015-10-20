@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8A77B0C9779532F542E8F3D52865925B84C54B50",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "8A77B0C9779532F542E8F3D52865925B84C54B50" : 0,
+    "A7E61EB6FCB8B67365856996BA49784C152572BC" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "8D24DF51-313D-4ECA-873D-27619C7C6229",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "8A77B0C9779532F542E8F3D52865925B84C54B50" : "BrickBreaker\/",
+    "A7E61EB6FCB8B67365856996BA49784C152572BC" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BrickBreaker",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BrickBreaker.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/casperschobers\/BrickBreaker.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8A77B0C9779532F542E8F3D52865925B84C54B50"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com\/casperschobers\/BrickBreaker.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A7E61EB6FCB8B67365856996BA49784C152572BC"
+    }
+  ]
+}
