@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF3D28D41BD8230400117D58 /* GameOverScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AF3D28D31BD8230400117D58 /* GameOverScene.sks */; settings = {ASSET_TAGS = (); }; };
+		AF3D28D81BD825D100117D58 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3D28D71BD825D100117D58 /* GameOverScene.swift */; settings = {ASSET_TAGS = (); }; };
 		AFA945AA1BD572CB009C7092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA945A91BD572CB009C7092 /* AppDelegate.swift */; };
 		AFA945AC1BD572CB009C7092 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AFA945AB1BD572CB009C7092 /* GameScene.sks */; };
 		AFA945AE1BD572CB009C7092 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA945AD1BD572CB009C7092 /* GameScene.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AF3D28D31BD8230400117D58 /* GameOverScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameOverScene.sks; sourceTree = "<group>"; };
+		AF3D28D71BD825D100117D58 /* GameOverScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameOverScene.swift; path = ../GameOverScene.swift; sourceTree = "<group>"; };
 		AFA945A61BD572CB009C7092 /* BrickBreaker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrickBreaker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFA945A91BD572CB009C7092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFA945AB1BD572CB009C7092 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -104,6 +108,8 @@
 				AFA945A91BD572CB009C7092 /* AppDelegate.swift */,
 				AFA945AB1BD572CB009C7092 /* GameScene.sks */,
 				AFA945AD1BD572CB009C7092 /* GameScene.swift */,
+				AF3D28D31BD8230400117D58 /* GameOverScene.sks */,
+				AF3D28D71BD825D100117D58 /* GameOverScene.swift */,
 				AFA945AF1BD572CB009C7092 /* GameViewController.swift */,
 				AFA945B11BD572CB009C7092 /* Main.storyboard */,
 				AFA945B41BD572CB009C7092 /* Assets.xcassets */,
@@ -238,6 +244,7 @@
 				AFA945AC1BD572CB009C7092 /* GameScene.sks in Resources */,
 				AFA945B81BD572CB009C7092 /* LaunchScreen.storyboard in Resources */,
 				AFA945B51BD572CB009C7092 /* Assets.xcassets in Resources */,
+				AF3D28D41BD8230400117D58 /* GameOverScene.sks in Resources */,
 				AFA945B31BD572CB009C7092 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +272,7 @@
 			files = (
 				AFA945AE1BD572CB009C7092 /* GameScene.swift in Sources */,
 				AFA945B01BD572CB009C7092 /* GameViewController.swift in Sources */,
+				AF3D28D81BD825D100117D58 /* GameOverScene.swift in Sources */,
 				AFA945AA1BD572CB009C7092 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -498,6 +506,7 @@
 				AFA945D41BD572CB009C7092 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFA945D51BD572CB009C7092 /* Build configuration list for PBXNativeTarget "BrickBreakerTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +515,7 @@
 				AFA945D71BD572CB009C7092 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFA945D81BD572CB009C7092 /* Build configuration list for PBXNativeTarget "BrickBreakerUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +524,7 @@
 				AFA945DA1BD572CB009C7092 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

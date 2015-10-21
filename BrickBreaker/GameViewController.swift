@@ -9,6 +9,23 @@
 import UIKit
 import SpriteKit
 
+extension SKNode {
+    class func unarchiveFromFile(file : String) -> SKNode? {
+        if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
+            let sceneData = try! NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
+            let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
+            
+            archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
+            let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! SKScene
+            archiver.finishDecoding()
+            return scene
+        } else {
+            return nil
+        }
+    }
+}
+
+
 class GameViewController: UIViewController {
 
     override func viewDidLoad() {

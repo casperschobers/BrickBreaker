@@ -10,7 +10,7 @@ import SpriteKit
 
 let BallCategoryName = "ball"
 let PaddleCategoryName = "paddle"
-let BlockCatergoryName = "block"
+let BlockCategoryName = "block"
 let BlockNodeCategoryName = "blockNode"
 
 var isFingerOnPaddle = false
@@ -48,8 +48,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         paddle.physicsBody!.categoryBitMask = PaddleCategory
         
         //set contacttestbitmask
-        ball.physicsBody!.contactTestBitMask = BottomCategory
+        ball.physicsBody!.contactTestBitMask = BottomCategory | BlockCategory
         
+        //let to make the blocks
+        let numberOfBlocks = 5
+        let blockWidth = SKSpriteNode(imageNamed: "block.png").size.width
+        let totalBlockWidth = blockWidth * CGFloat(numberOfBlocks)
+        
+        let padding: CGFloat = 10.0
+        let totalPadding = padding * CGFloat(numberOfBlocks - 1)
+        
+        //calc the x-offset
+        let xOffset = (CGRectGetWidth(frame) - totalBlockWidth - totalPadding) / 2
+        
+        //create blocks and add them to the GameScene
+        for i in 0..<numberOfBlocks{
+            let block = SKSpriteNode(imageNamed: "block.png")
+            block.position = CGPointMake(xOffset + CGFloat(CGFloat(i) + 0.5) * blockWidth + CGFloat(i-1) * padding, CGRectGetHeight(frame) * 0.8)
+            block.physicsBody = SKPhysicsBody(rectangleOfSize: block.frame.size)
+            block.physicsBody!.allowsRotation = false
+            block.physicsBody!.friction = 0.0
+            block.physicsBody!.affectedByGravity = false
+            block.name = BlockCategoryName
+            block.physicsBody!.categoryBitMask = BlockCategory
+            block.physicsBody!.dynamic = false
+            addChild(block)
+        }
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
@@ -99,7 +123,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if firstBody.categoryBitMask == BallCategory && secondBody.categoryBitMask == BottomCategory{
-            print("ball hit the bottom")
+            if let mainView = view {
+                let gameOverScene = GameOverScene.unarchiveFromFile("GameOverScene") as! GameOverScene
+                gameOverScene.gameWon = false
+                gameOverScene.scaleMode = .AspectFill
+                mainView.presentScene(gameOverScene)
+            }
         }
+        
+        if firstBody.categoryBitMask == BallCategory && secondBody.categoryBitMask == BlockCategory{
+            secondBody.node!.removeFromParent()
+            if isGameWon() {
+                if let mainView = view {
+                    let gameOverScene = GameOverScene.unarchiveFromFile("GameOverScene") as! GameOverScene
+                    gameOverScene.gameWon = true
+                    gameOverScene.scaleMode = .AspectFit
+                    mainView.presentScene(gameOverScene)
+                }
+            }
+        }
+    }
+    
+    func isGameWon() -> Bool {
+        var numberOfBricks = 0
+        self.enumerateChildNodesWithName(BlockCategoryName) {
+            node, stop in
+            numberOfBricks = numberOfBricks + 1
+        }
+        return numberOfBricks == 0
     }
 }
