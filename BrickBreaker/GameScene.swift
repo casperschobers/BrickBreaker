@@ -32,8 +32,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //set bounce for the ball and set contact delegate
         physicsWorld.gravity = CGVector(dx: 0.0, dy: 0.0)
         physicsWorld.contactDelegate = self
-        let ball = childNodeWithName(BallCategoryName) as! SKSpriteNode
-        ball.physicsBody!.applyImpulse(CGVector(dx: 10, dy: -10))
+        guard let ball = childNodeWithName(BallCategoryName) as? SKSpriteNode else { return }
+        ball.physicsBody?.applyImpulse(CGVector(dx: 10.0, dy: -10.0))
       
         //set border for bottom
         let borderRect = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width, height: 1.0)
@@ -42,13 +42,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(bottom)
         
         //set bitmask category
-        let paddle = childNodeWithName(PaddleCategoryName) as! SKSpriteNode
-        bottom.physicsBody!.categoryBitMask = BottomCategory
-        ball.physicsBody!.categoryBitMask = BallCategory
-        paddle.physicsBody!.categoryBitMask = PaddleCategory
+        guard let paddle = childNodeWithName(PaddleCategoryName) as? SKSpriteNode else { return }
+        bottom.physicsBody?.categoryBitMask = BottomCategory
+        ball.physicsBody?.categoryBitMask = BallCategory
+        paddle.physicsBody?.categoryBitMask = PaddleCategory
         
         //set contacttestbitmask
-        ball.physicsBody!.contactTestBitMask = BottomCategory | BlockCategory
+        ball.physicsBody?.contactTestBitMask = BottomCategory | BlockCategory
         
         //let to make the blocks
         let numberOfBlocks = 5
@@ -66,12 +66,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let block = SKSpriteNode(imageNamed: "block.png")
             block.position = CGPoint(x: xOffset + CGFloat(CGFloat(i) + 0.5) * blockWidth + CGFloat(i-1) * padding, y :CGRectGetHeight(frame) * 0.8)
             block.physicsBody = SKPhysicsBody(rectangleOfSize: block.frame.size)
-            block.physicsBody!.allowsRotation = false
-            block.physicsBody!.friction = 0.0
-            block.physicsBody!.affectedByGravity = false
+            block.physicsBody?.allowsRotation = false
+            block.physicsBody?.friction = 0.0
+            block.physicsBody?.affectedByGravity = false
             block.name = BlockCategoryName
-            block.physicsBody!.categoryBitMask = BlockCategory
-            block.physicsBody!.dynamic = false
+            block.physicsBody?.categoryBitMask = BlockCategory
+            block.physicsBody?.dynamic = false
             addChild(block)
         }
     }
@@ -92,8 +92,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let touchLocation = touch.locationInNode(self)
             let previousLocation = touch.previousLocationInNode(self)
             
-            let paddle = childNodeWithName(PaddleCategoryName) as! SKSpriteNode
-            
+            guard let paddle = childNodeWithName(PaddleCategoryName) as? SKSpriteNode else { return }
+          
             var paddleX = paddle.position.x + (touchLocation.x - previousLocation.x)
             
             paddleX = max(paddleX, paddle.size.width/2)
