@@ -12,16 +12,21 @@ import SpriteKit
 extension SKNode {
     class func unarchiveFromFile(file : String) -> SKNode? {
         if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
-            let sceneData = try! NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
-            let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
-            
-            archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-            let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! SKScene
-            archiver.finishDecoding()
-            return scene
-        } else {
-            return nil
+            do {
+                let sceneData = try NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
+                let archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
+                
+                archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
+                guard let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as? SKScene else { return nil }
+                archiver.finishDecoding()
+              
+                return scene
+            } catch {
+                print("[ERROR] \(error)")
+            }
         }
+      
+        return nil
     }
 }
 
@@ -33,17 +38,17 @@ class GameViewController: UIViewController {
 
         if let scene = GameScene(fileNamed:"GameScene") {
             // Configure the view.
-            let skView = self.view as! SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
+            let skView = self.view as? SKView
+            skView?.showsFPS = true
+            skView?.showsNodeCount = true
             
             /* Sprite Kit applies additional optimizations to improve rendering performance */
-            skView.ignoresSiblingOrder = true
+            skView?.ignoresSiblingOrder = true
             
             /* Set the scale mode to scale to fit the window */
             scene.scaleMode = .AspectFill
             
-            skView.presentScene(scene)
+            skView?.presentScene(scene)
         }
     }
 
