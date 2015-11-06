@@ -12,8 +12,10 @@ private let BallCategoryName = "ball"
 private let PaddleCategoryName = "paddle"
 private let BlockCategoryName = "block"
 private let BlockNodeCategoryName = "blockNode"
+private let ScoreLabelCategoryName = "scoreValueLabel"
 
 var isFingerOnPaddle = false
+var score = 0
 
 private let BallCategory   : UInt32 = 0x1 << 0 // 00000000000000000000000000000001
 private let BottomCategory : UInt32 = 0x1 << 1 // 00000000000000000000000000000010
@@ -21,6 +23,7 @@ private let BlockCategory  : UInt32 = 0x1 << 2 // 000000000000000000000000000001
 private let PaddleCategory : UInt32 = 0x1 << 3 // 00000000000000000000000000001000
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
+    
     
     override func didMoveToView(view: SKView) {
         super.didMoveToView(view)
@@ -57,7 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let blockWidth = SKSpriteNode(imageNamed: "block.png").size.width
         let totalBlockWidth = blockWidth * CGFloat(numberOfBlocks)
         
-        let padding: CGFloat = 10.0
+        let padding: CGFloat = 20.0
         let totalPadding = padding * CGFloat(numberOfBlocks - 1)
         
         //calc the x-offset
@@ -141,6 +144,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         if firstBody.categoryBitMask == BallCategory && secondBody.categoryBitMask == BottomCategory{
             if let mainView = view, gameOverScene = GameOverScene.unarchiveFromFile("GameOverScene") as? GameOverScene {
+                print("game over")
                 gameOverScene.gameWon = false
                 gameOverScene.scaleMode = .AspectFill
                 mainView.presentScene(gameOverScene)
@@ -148,8 +152,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if firstBody.categoryBitMask == BallCategory && secondBody.categoryBitMask == BlockCategory{
+            print("block hit with ball")
+            //update score
+            score++
+            let scoreLabel = childNodeWithName(ScoreLabelCategoryName) as? SKLabelNode
+            scoreLabel?.text = "\(score)"
+            //delete block
             secondBody.node?.removeFromParent()
             if let mainView = view, gameOverScene = GameOverScene.unarchiveFromFile("GameOverScene") as? GameOverScene where gameWon {
+                print("game won")
                 gameOverScene.gameWon = true
                 gameOverScene.scaleMode = .AspectFit
                 mainView.presentScene(gameOverScene)

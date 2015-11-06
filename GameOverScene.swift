@@ -20,6 +20,7 @@ class GameOverScene: SKScene {
     }
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        
         guard let gameScene = GameScene.unarchiveFromFile("GameScene") as? GameScene else { return }
         
         if let view = view {
