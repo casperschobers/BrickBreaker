@@ -24,6 +24,7 @@ class GameOverScene: SKScene {
         guard let gameScene = GameScene.unarchiveFromFile("GameScene") as? GameScene else { return }
         
         if let view = view {
+            score = 0
             gameScene.scaleMode = .AspectFill
             view.presentScene(gameScene)
         }
